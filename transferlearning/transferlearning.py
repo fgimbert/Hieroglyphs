@@ -24,7 +24,7 @@ epochs = 50
 nb_classes=16
 input_shape=(img_width, img_height, 3)
 
-def hieroRecoModel_offline(input_shape,nb_classes):
+def hieroRecoModel_offline(input_shape):
     """
     Implementation of the Inception model used for FaceNet
 
@@ -60,7 +60,7 @@ def hieroRecoModel_offline(input_shape,nb_classes):
     return model
 
 
-def hieroRecoModel(input_shape,nb_classes):
+def hieroRecoModel(input_shape):
     """
     Implementation of the Inception model used for FaceNet
 
@@ -163,7 +163,7 @@ def triplet_loss_2(anchor, positive, negative, alpha=0.4):
     return loss
 
 
-FRmodel = hieroRecoModel_offline(input_shape=input_shape,nb_classes=nb_classes)
+FRmodel = hieroRecoModel_offline(input_shape=input_shape)
 FRmodel.summary()
 
-FRmodel.compile(optimizer = 'adam', loss = triplet_loss, metrics = ['accuracy'])
+#FRmodel.compile(optimizer = 'adam', loss = triplet_loss, metrics = ['accuracy'])
