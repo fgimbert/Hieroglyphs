@@ -17,8 +17,8 @@ True Hieroglyph :  N35 // Predicted :  N35 dist :  0.519468589414221
 True Hieroglyph :  G43 // Predicted :  G43 dist :  0.299870809479935
 True Hieroglyph :  N35 // Predicted :  N35 dist :  0.46286286652256997
 True Hieroglyph :  G17 // Predicted :  G17 dist :  0.47755075031076166
-True Hieroglyph :  N35 // Predicted :  N35 dist :  0.48354205808368433
-True Hieroglyph :  G17 // Predicted :  G17 dist :  0.507103059385015
+True Hieroglyph :  N35 // Predicted :  N35 dist :  0.48354205808368433 
+True Hieroglyph :  G17 // Predicted :  G17 dist :  0.507103059385015 
 
 TO DO LIST : 
 - check all the variables used and remove the useless
