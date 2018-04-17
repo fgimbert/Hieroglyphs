@@ -10,6 +10,7 @@ available on https://github.com/morrisfranken/glyphreader
 First try with siamese neural networks and triplet loss done in hieroRecognition.py. It's working ! 
 
 True Hieroglyph :  N35 // Predicted :  N35 dist :  0.31444969855005006
+
 True Hieroglyph :  M17 // Predicted :  M1 dist :  0.7477856094253583
 True Hieroglyph :  N35 // Predicted :  N35 dist :  0.5486129605025075
 True Hieroglyph :  U1 // Predicted :  U1 dist :  0.7899228657901501
