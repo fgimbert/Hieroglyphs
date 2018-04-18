@@ -17,7 +17,7 @@ True Hieroglyph :  N35 // Predicted :  N35 dist :  0.5486129605025075
 
 True Hieroglyph :  U1 // Predicted :  U1 dist :  0.7899228657901501
 
-![Alt text](screenshots/results.jpg?raw=true "Title")
+![alt text](screenshots/results.png "Left : Input Hieroglyph // Right : Predicted class")
 
 
 TO DO LIST : 
