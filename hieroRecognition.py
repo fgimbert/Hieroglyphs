@@ -5,11 +5,10 @@ import random
 #from PIL import Image
 
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 import numpy as np
-from scipy.ndimage import imread
 
-#from skimage import io
 
 from keras import applications
 from keras.preprocessing.image import ImageDataGenerator
@@ -27,8 +26,8 @@ from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard,
 import tensorflow as tf
 
 
-path="/Users/fgimbert/Documents/Dataset/Manual/Preprocessed/"
-
+#path="/Users/fgimbert/Documents/Dataset/Manual/Preprocessed/"
+path="/Users/floriangimbert/PycharmProjects/HieroDataset/Manual/Preprocessed/"
 
 def loadData(folderPictures=path):
 
@@ -65,7 +64,7 @@ def loadData(folderPictures=path):
 
     # Extract only N hieroglyph classes randomly
 
-    nclass = 50
+    nclass = len(img_groups.keys())
 
     list_of_class = random.sample(list(img_groups.keys()), nclass)
     #print(list_of_class)
@@ -150,22 +149,22 @@ def loadPictures(data):
 
         repertory, file = row['anchor'].split("_")
         label = row['label']
-        picture = "/Users/fgimbert/Documents/Dataset/Manual/Preprocessed/" + str(repertory) + "/" + str(
+        picture = path + str(repertory) + "/" + str(
             file) + "_" + str(label) + ".png"
         labels_true.append(label)
-        anchor[index]=imread(picture, flatten=True).reshape(1,img_x*img_y)
+        anchor[index]=mpimg.imread(picture).reshape(1,img_x*img_y)
 
         repertory, file = row['positive'].split("_")
-        picture = "/Users/fgimbert/Documents/Dataset/Manual/Preprocessed/" + str(repertory) + "/" + str(
+        picture = path + str(repertory) + "/" + str(
             file) + "_" + str(label) + ".png"
-        positive[index] = imread(picture, flatten=True).reshape(1, img_x * img_y)
+        positive[index] = mpimg.imread(picture).reshape(1, img_x * img_y)
 
         repertory, file = row['negative'].split("_")
         label = row['neg_label']
-        picture = "/Users/fgimbert/Documents/Dataset/Manual/Preprocessed/" + str(repertory) + "/" + str(
+        picture = path + str(repertory) + "/" + str(
             file) + "_" + str(label) + ".png"
         labels_wrong.append(label)
-        negative[index] = imread(picture, flatten=True).reshape(1, img_x * img_y)
+        negative[index] = mpimg.imread(picture).reshape(1, img_x * img_y)
 
     return [anchor,positive,negative],labels_true,labels_wrong
 
@@ -330,7 +329,7 @@ tripletData=loadTriplets(dataHiero,dictLabels)
 dataset,labels_true,labels_wrong =loadPictures(tripletData)
 
 if dataset[0].shape[0]>1500:
-    ntrain=1500
+    ntrain=3500
 else:
     ntrain=1000
 
@@ -341,12 +340,16 @@ test_data=dataset[0][ntrain:].reshape((-1,img_width, img_height, 1))
 print(train_data[0].shape)
 
 
-
+#Short Model
 features, loss_model = hieroRecoModel_offline(input_shape)
+
+#Import VGG19 model for transfer learning
+#features, loss_model = hieroRecoModel_online(input_shape)
+
 loss_model.summary()
-history = loss_model.fit(train_data,batch_size=16,epochs=15,verbose=2)
+history = loss_model.fit(train_data,batch_size=16,epochs=50,verbose=2)
 
-
+model.save_weights('short_model.h5')
 #plt.plot(history.history['loss'],label='loss')
 #plt.legend()
 #plt.savefig('loss.png')
@@ -360,9 +363,7 @@ def encoding_database(data,model):
 
     for index,row in enumerate(data):
         row=row.reshape(1,shapedata[1],shapedata[2],shapedata[3])
-        #print(row.shape)
         X_features=model.predict(row)
-        #print(X_features.shape)
         database[index]=X_features
 
     return database
@@ -375,7 +376,7 @@ dico_hiero={}
 for index in range(ntrain):
     if labels_true[index] not in dico_hiero.keys():
 
-        dico_hiero[labels_true[index]] = train_hiero[index]
+        dico_hiero[labels_true[index]] = [train_hiero[index],train_data[0][index]]
 
 print(dico_hiero.keys())
 
@@ -386,7 +387,7 @@ def which_hiero(image,dico_hiero):
     min_dist=100
 
     for (name,db_enc) in dico_hiero.items():
-        dist=np.linalg.norm(image-db_enc)
+        dist=np.linalg.norm(image-db_enc[0])
 
         if dist<min_dist:
             min_dist = dist
@@ -399,8 +400,35 @@ def which_hiero(image,dico_hiero):
 
 #####TEST RECOGNITION#####
 
-for i in range(10):
+import matplotlib.pyplot as plt
+from matplotlib import gridspec
+
+
+fig = plt.figure(figsize=(8, 8))
+plt.ioff()
+
+# gridspec inside gridspec
+outer_grid = gridspec.GridSpec(3, 3, wspace=0.05, hspace=0.05)
+
+for i in range(9):
     dist, hieroglyph = which_hiero(test_hiero[i], dico_hiero)
     print("True Hieroglyph : " ,labels_true[ntrain+i],"// Predicted : " ,hieroglyph, "dist : ", dist)
 
+    inner_grid = gridspec.GridSpecFromSubplotSpec(1, 2, subplot_spec=outer_grid[i], wspace=0.0, hspace=0.0)
 
+    ax = plt.Subplot(fig, inner_grid[0])
+    ax.imshow(test_data[i].reshape(img_height, img_width),cmap='gray')
+    ax.set_xticks([])
+    ax.set_yticks([])
+    fig.add_subplot(ax)
+    ax = plt.Subplot(fig, inner_grid[1])
+    ax.imshow(dico_hiero[hieroglyph][1].reshape(img_height, img_width),cmap='gray')
+    ax.set_xticks([])
+    ax.set_yticks([])
+    fig.add_subplot(ax)
+
+
+#plt.show()
+fig.savefig('screenshots/results.png')
+
+plt.close(fig)
