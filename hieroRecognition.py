@@ -415,13 +415,13 @@ plt.ioff()
 outer_grid = gridspec.GridSpec(3, 3, wspace=0.05, hspace=0.05)
 
 for i in range(9):
-    dist, hieroglyph = which_hiero(test_hiero[i+23], dico_hiero)
-    print("True Hieroglyph : " ,labels_true[ntrain+i+23],"// Predicted : " ,hieroglyph, "dist : ", dist)
+    dist, hieroglyph = which_hiero(test_hiero[i+5], dico_hiero)
+    print("True Hieroglyph : " ,labels_true[ntrain+i+5],"// Predicted : " ,hieroglyph, "dist : ", dist)
 
     inner_grid = gridspec.GridSpecFromSubplotSpec(1, 2, subplot_spec=outer_grid[i], wspace=0.0, hspace=0.0)
 
     ax = plt.Subplot(fig, inner_grid[0])
-    ax.imshow(test_data[i+23].reshape(img_height, img_width),cmap='gray')
+    ax.imshow(test_data[i+5].reshape(img_height, img_width),cmap='gray')
     ax.set_xticks([])
     ax.set_yticks([])
     fig.add_subplot(ax)

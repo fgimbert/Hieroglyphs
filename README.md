@@ -20,9 +20,9 @@ True Hieroglyph :  G17 // Predicted :  G21 dist :  0.41295210841828955
 
 TO DO LIST : 
 - check all the variables used and remove the useless
-- implement a way to visualize the results with pictures and not the labels - in work
+- implement a way to visualize the results with pictures and not the labels - done
+- improve the neural network - in work
 - improve the database used for train and test
-- improve the neural network
 - use the model with transfer learning already implemented (model_online) convert to RGB
 - implement a contrastive loss
 - write an explanation of the model 
