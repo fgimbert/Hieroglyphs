@@ -215,10 +215,6 @@ def hieroRecoModel_offline(input_shape):
     X = Activation('relu')(X)
     X = MaxPooling2D((3, 3), strides=2)(X)
 
-    X = Conv2D(64, (3, 3))(X)
-    X = Activation('relu')(X)
-    X = MaxPooling2D((3, 3), strides=2)(X)
-
     X = Flatten()(X)
     X = Dense(128, name='dense_layer')(X)
 
@@ -379,10 +375,9 @@ dico_hiero={}
 
 for index in range(ntrain):
     if labels_true[index] not in dico_hiero.keys():
-
-        dico_hiero[labels_true[index]] = [train_hiero[index],train_data[0][index]]
-
-print(dico_hiero.keys())
+        dico_hiero[labels_true[index]] = [[train_hiero[index],index]]
+    else:
+        dico_hiero[labels_true[index]].append([train_hiero[index], index])
 
 
 
@@ -391,11 +386,13 @@ def which_hiero(image,dico_hiero):
     min_dist=100
 
     for (name,db_enc) in dico_hiero.items():
-        dist=np.linalg.norm(image-db_enc[0])
+        for encoding in db_enc:
+            dist=np.linalg.norm(image-encoding[0])
 
-        if dist<min_dist:
-            min_dist = dist
-            identity=name
+
+            if dist<min_dist:
+                min_dist = dist
+                identity=name
 
     #if min_dist>0.5:
         #identity='UNKNOWN'
@@ -426,7 +423,8 @@ for i in range(9):
     ax.set_yticks([])
     fig.add_subplot(ax)
     ax = plt.Subplot(fig, inner_grid[1])
-    ax.imshow(dico_hiero[hieroglyph][1].reshape(img_height, img_width),cmap='gray')
+    index=dico_hiero[hieroglyph][1][1]
+    ax.imshow(train_data[0][index].reshape(img_height, img_width),cmap='gray')
     ax.set_xticks([])
     ax.set_yticks([])
     ax.text(-32,-8, 'Dissimilarity : {:.2f}'.format(dist), style='italic', bbox={'facecolor': 'white', 'alpha': 0.5, 'pad': 5})
