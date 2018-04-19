@@ -215,6 +215,10 @@ def hieroRecoModel_offline(input_shape):
     X = Activation('relu')(X)
     X = MaxPooling2D((3, 3), strides=2)(X)
 
+    X = Conv2D(64, (3, 3))(X)
+    X = Activation('relu')(X)
+    X = MaxPooling2D((3, 3), strides=2)(X)
+
     X = Flatten()(X)
     X = Dense(128, name='dense_layer')(X)
 
@@ -349,7 +353,7 @@ features, loss_model = hieroRecoModel_offline(input_shape)
 loss_model.summary()
 history = loss_model.fit(train_data,batch_size=16,epochs=50,verbose=2)
 
-model.save_weights('short_model.h5')
+loss_model.save_weights('short_model.h5')
 #plt.plot(history.history['loss'],label='loss')
 #plt.legend()
 #plt.savefig('loss.png')
@@ -411,13 +415,13 @@ plt.ioff()
 outer_grid = gridspec.GridSpec(3, 3, wspace=0.05, hspace=0.05)
 
 for i in range(9):
-    dist, hieroglyph = which_hiero(test_hiero[i], dico_hiero)
-    print("True Hieroglyph : " ,labels_true[ntrain+i],"// Predicted : " ,hieroglyph, "dist : ", dist)
+    dist, hieroglyph = which_hiero(test_hiero[i+23], dico_hiero)
+    print("True Hieroglyph : " ,labels_true[ntrain+i+23],"// Predicted : " ,hieroglyph, "dist : ", dist)
 
     inner_grid = gridspec.GridSpecFromSubplotSpec(1, 2, subplot_spec=outer_grid[i], wspace=0.0, hspace=0.0)
 
     ax = plt.Subplot(fig, inner_grid[0])
-    ax.imshow(test_data[i].reshape(img_height, img_width),cmap='gray')
+    ax.imshow(test_data[i+23].reshape(img_height, img_width),cmap='gray')
     ax.set_xticks([])
     ax.set_yticks([])
     fig.add_subplot(ax)
@@ -425,10 +429,12 @@ for i in range(9):
     ax.imshow(dico_hiero[hieroglyph][1].reshape(img_height, img_width),cmap='gray')
     ax.set_xticks([])
     ax.set_yticks([])
+    ax.text(-32,-8, 'Dissimilarity : {:.2f}'.format(dist), style='italic', bbox={'facecolor': 'white', 'alpha': 0.5, 'pad': 5})
     fig.add_subplot(ax)
 
-
+plt.suptitle("Left : Input Hieroglyph // Right : Predicted class")
 #plt.show()
+
 fig.savefig('screenshots/results.png')
 
 plt.close(fig)
