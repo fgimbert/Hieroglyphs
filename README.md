@@ -11,7 +11,6 @@ First try with siamese neural networks and triplet loss done in hieroRecognition
 
 ![alt text](screenshots/results2.png "Left : Input Hieroglyph // Right : Predicted class")
 
-
 TO DO LIST : 
 - check all the variables used and remove the useless
 - implement a way to visualize the results with pictures and not the labels - done
