@@ -15,7 +15,7 @@ True Hieroglyph :  D21 // Predicted :  D21 dist :  0.5125530245953122
 
 True Hieroglyph :  G17 // Predicted :  G21 dist :  0.41295210841828955
 
-![alt text](screenshots/results.png "Left : Input Hieroglyph // Right : Predicted class")
+![alt text](screenshots/results2.png "Left : Input Hieroglyph // Right : Predicted class")
 
 
 TO DO LIST : 

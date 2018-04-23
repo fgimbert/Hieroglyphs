@@ -168,7 +168,7 @@ def loadPictures(data):
 
     return [anchor,positive,negative],labels_true,labels_wrong
 
-def triplet_loss(y_pred, alpha=0.5):
+def triplet_loss(y_pred, alpha=1.0):
 
     """
     Implementation of the triplet loss as defined by formula (3)
@@ -347,6 +347,8 @@ features, loss_model = hieroRecoModel_offline(input_shape)
 #features, loss_model = hieroRecoModel_online(input_shape)
 
 loss_model.summary()
+loss_model.load_weights('short_model.h5')
+
 history = loss_model.fit(train_data,batch_size=16,epochs=50,verbose=2)
 
 loss_model.save_weights('short_model.h5')
@@ -401,6 +403,17 @@ def which_hiero(image,dico_hiero):
 
 #####TEST RECOGNITION#####
 
+correct_label=0
+ntest=test_hiero.shape[0]
+
+for i in range(ntest):
+    dist, hieroglyph = which_hiero(test_hiero[i], dico_hiero)
+    if labels_true[ntrain+i] == hieroglyph:
+        correct_label += 1
+
+accuracy=float(correct_label/ntest)*100
+print("Accuracy : {:2.2f}%".format(accuracy))
+
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 
@@ -430,9 +443,10 @@ for i in range(9):
     ax.text(-32,-8, 'Dissimilarity : {:.2f}'.format(dist), style='italic', bbox={'facecolor': 'white', 'alpha': 0.5, 'pad': 5})
     fig.add_subplot(ax)
 
-plt.suptitle("Left : Input Hieroglyph // Right : Predicted class")
+plt.suptitle("Left : Input Hieroglyph // Right : Predicted class Accuracy : {:2.2f}%".format(accuracy))
 #plt.show()
 
-fig.savefig('screenshots/results.png')
+fig.savefig('screenshots/results2.png')
 
 plt.close(fig)
+
