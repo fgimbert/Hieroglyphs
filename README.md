@@ -17,7 +17,7 @@ The FaceNet model is using Siamese Networks architecture which learns to differe
 The network architure consists of identical neural networks with the exact same weights.
 The similarity between two pictures is calculated by how close the embedding given by the network for each input pictures, as a simple euclidian distance
 
-![alt text](pictures/siemesenetworks.jpg "Siamese Networks")
+![alt text](pictures/siamesenetworks.jpg "Siamese Networks")
 
 ## Triplet loss
 
