@@ -17,7 +17,7 @@ The FaceNet model is using Siamese Networks architecture which learns to differe
 The network architure consists of identical neural networks with the exact same weights.
 The similarity between two pictures is calculated by how close the embedding given by the network for each input pictures, as a simple euclidian distance
 
-![alt text](pictures/siemesenetworks.png "Siamese Networks")
+![alt text](pictures/siemesenetworks.jpg "Siamese Networks")
 
 ## Triplet loss
 
@@ -39,7 +39,7 @@ TO DO LIST :
 
 Next step : hieroglyph localization inside picture ?
 
-![alt text](pictures/egyptiantext.png "Egyptian text")
+![alt text](pictures/egyptiantext.jpeg "Egyptian text")
 
 
 
