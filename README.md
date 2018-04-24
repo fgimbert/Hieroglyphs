@@ -7,7 +7,7 @@ available on https://github.com/morrisfranken/glyphreader
 
 First try with siamese neural networks and triplet loss done in hieroRecognition.py. It's working !
 
-![alt text](screenshots/results2.png "Left : Input Hieroglyph // Right : Predicted class")
+<p><img src="file:///Users/floriangimbert/PycharmProjects/Hieroglyphs/screenshots/results2.png " alt="alt text" title="Egyptian text" height="700" width="700"/></p>
 
 DBSCAN / Old implementation of a DBSCAN (clustering) algorithm to localize hieroglyphs in a picture. Not working anymore. I will correct it when I have time !
 
@@ -17,7 +17,7 @@ The FaceNet model is using Siamese Networks architecture which learns to differe
 The network architure consists of identical neural networks with the exact same weights.
 The similarity between two pictures is calculated by how close the embedding given by the network for each input pictures, as a simple euclidian distance
 
-![alt text](pictures/siemesenetworks.jpg "Siamese Networks")
+<p><img src="file:///Users/floriangimbert/PycharmProjects/Hieroglyphs/pictures/siamesenetworks.jpg" alt="alt text" title="Egyptian text" height="360" width="640"/></p>
 
 ## Triplet loss
 
@@ -26,7 +26,6 @@ The contrastive loss function uses a pair of pictures to evaluate the distance b
 and a picture of different class (called negative). The triple loss function minimises the distance between an anchor and a positive and maximises the distance between the anchor and a negative.
 
 ![alt text](pictures/tripletloss.png "Triplet loss")
-
 
 TO DO LIST : 
 - check all the variables used and remove the useless
@@ -39,7 +38,6 @@ TO DO LIST :
 
 Next step : hieroglyph localization inside picture ?
 
-![alt text](pictures/egyptiantext.jpeg "Egyptian text")
-
+<p><img src="file:///Users/floriangimbert/PycharmProjects/Hieroglyphs/pictures/egyptiantext.jpeg" alt="alt text" title="Egyptian text" height="800" width="575"/></p>
 
 
