@@ -38,6 +38,6 @@ TO DO LIST :
 
 Next step : hieroglyph localization inside picture ?
 
-<p><img src="https://raw.githubusercontent.com/fgimbert/Hieroglyphs/master/pictures/egyptiantext.jpeg" alt="alt text" title="Egyptian text" height="800" width="575"/></p>
+<p><img src="pictures/egyptiantext.jpeg" alt="alt text" title="Egyptian text" height="800" width="575"/></p>
 
 
