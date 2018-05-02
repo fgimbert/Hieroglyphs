@@ -36,8 +36,12 @@ TO DO LIST :
 - implement a contrastive loss
 - write an explanation of the model 
 
-Next step : hieroglyph localization inside picture ?
+## Future: TinyYOLO
 
-<p><img src="pictures/egyptiantext.jpeg" alt="alt text" title="Egyptian text" height="800" width="575"/></p>
+Next step: hieroglyph localization inside picture with tinyYolo ?
+
+## Future: Projet Rosette
+
+How to use the data base available on http://projetrosette.info ?
 
 
