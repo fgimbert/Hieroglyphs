@@ -42,6 +42,11 @@ Next step: hieroglyph localization inside picture with tinyYolo ?
 
 ## Future: Projet Rosette
 
-How to use the data base available on http://projetrosette.info ?
+How to use the database available on http://projetrosette.info ?
 
+![alt text](pictures/hiero.png "Example of hiero") ![alt text](pictures/hiero2.png "Example of hiero")
+
+![alt text](pictures/hiero3.jpg "Example of hiero")
+
+Is it better to use clean hieroglyphs, only pictures (but not always available), both ?
 
