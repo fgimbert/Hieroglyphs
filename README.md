@@ -2,6 +2,9 @@
 
 Personal project where I play with machine learning on Egyptian Hieroglyphs.
 
+![](hierodemo.gif)
+
+
 Currently on-going : implementation of siamese neural networks similar to face recognition (FaceNet). Using the dataset
 available on https://github.com/morrisfranken/glyphreader
 
