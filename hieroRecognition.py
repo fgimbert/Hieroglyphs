@@ -1,26 +1,17 @@
 import os
 import pandas
 import random
-#from PIL import Image
-
-import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-
 import numpy as np
 
-
 from keras import applications
-from keras.preprocessing.image import ImageDataGenerator
-from keras import optimizers
 from keras.models import Model
-from keras.layers import Dropout, Flatten, Dense, ZeroPadding2D, Input, Lambda, concatenate
-from keras.layers import Conv2D,Activation
+from keras.layers import Dropout, Flatten, Dense, ZeroPadding2D, Input, Lambda
+from keras.layers import Conv2D, Activation
 from keras.layers.normalization import BatchNormalization
 from keras.layers.pooling import MaxPooling2D
-from keras.optimizers import Adam, RMSprop, SGD
 
 from keras import backend as K
-from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard, EarlyStopping
 
 import tensorflow as tf
 
@@ -267,7 +258,7 @@ def hieroRecoModel_online(input_shape):
     for layer in vgg_model.layers:
         print(layer, layer.trainable)
 
-    X_input = model.output
+    X_input = vgg_model.output
 
     # Adding custom Layers
 

@@ -2,6 +2,9 @@
 
 Personal project where I play with machine learning on Egyptian Hieroglyphs.
 
+![](hierodemo.gif)
+
+
 Currently on-going : implementation of siamese neural networks similar to face recognition (FaceNet). Using the dataset
 available on https://github.com/morrisfranken/glyphreader
 
@@ -36,8 +39,17 @@ TO DO LIST :
 - implement a contrastive loss
 - write an explanation of the model 
 
-Next step : hieroglyph localization inside picture ?
+## Future: TinyYOLO
 
-<p><img src="pictures/egyptiantext.jpeg" alt="alt text" title="Egyptian text" height="800" width="575"/></p>
+Next step: hieroglyph localization inside picture with tinyYolo ?
 
+## Future: Projet Rosette
+
+How to use the database available on http://projetrosette.info ?
+
+![alt text](pictures/hiero.png "Example of hiero") ![alt text](pictures/hiero2.png "Example of hiero")
+
+![alt text](pictures/hiero3.jpg "Example of hiero")
+
+Is it better to use clean hieroglyphs, only pictures (but not always available), both ?
 
