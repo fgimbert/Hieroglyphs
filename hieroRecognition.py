@@ -1,6 +1,5 @@
 import os
 import pandas
-import numpy as np
 import random
 #from PIL import Image
 
@@ -70,10 +69,6 @@ def loadData(folderPictures=path):
     #print(list_of_class)
 
     short_dico = {x: img_groups[x] for x in list_of_class if x in img_groups}
-
-
-
-
 
     dataHiero=pandas.DataFrame.from_dict(img_list,orient='index')
     dataHiero.columns = ["label"]
