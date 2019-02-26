@@ -4,15 +4,17 @@ Personal project where I play with machine learning on Egyptian Hieroglyphs.
 
 ![](hierodemo.gif)
 
+# How to use ! 
 
-Currently on-going : implementation of siamese neural networks similar to face recognition (FaceNet). Using the dataset
-available on https://github.com/morrisfranken/glyphreader
+Just run detectHiero.ipynb  for DBSCAN hieroglyph detection on a picture. If you want to test on your own picture, add it to the repertory examples and the name in the list examples. (I will modify this soon). 
+
+
+Currently on-going : implementation of siamese neural networks similar to face recognition (FaceNet) in hieroReco notebook using the dataset available on https://github.com/morrisfranken/glyphreader
 
 First try with siamese neural networks and triplet loss done in hieroRecognition.py. It's working !
 
 ![alt text](screenshots/results2.png "Left : Input Hieroglyph // Right : Predicted class")
 
-DBSCAN / Old implementation of a DBSCAN (clustering) algorithm to localize hieroglyphs in a picture. Not working anymore. I will correct it when I have time !
 
 ## Facenet Siamese Network
 
