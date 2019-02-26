@@ -6,7 +6,16 @@ Personal project where I play with machine learning on Egyptian Hieroglyphs.
 
 # How to use ! 
 
-Just run detectHiero.ipynb  for DBSCAN hieroglyph detection on a picture. If you want to test on your own picture, add it to the repertory examples and the name in the list examples. (I will modify this soon for automatic recognition of the files in the repertory examples). 
+Just run detectHiero.ipynb  for DBSCAN hieroglyph detection on a picture. For the first time, you need to choose a specific filter as Otsu or Autocanny before applying DBSCAN (the check button) ! If not, an error will occur. And after that, you can click on Check DBSCAN on the right. 
+
+If you want to test on your own picture, add it to the repertory examples and the name in the list examples. (I will modify this soon for automatic recognition of the files in the repertory examples). 
+
+Packages necessarry :
+- opencv
+- scikit-learn
+- scikit-image
+- and the usual ones: matplotlib, numpy
+
 
 
 Currently on-going : implementation of siamese neural networks similar to face recognition (FaceNet) in hieroReco notebook using the dataset available on https://github.com/morrisfranken/glyphreader
